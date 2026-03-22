@@ -1,0 +1,5 @@
+id_venda,produto,valor,data_venda
+1,notebook,4500.0,2026-03-22
+2,mouse,150.0,2026-03-22
+3,,0.0,2026-03-22
+4,TECLADO,200.0,2026-03-22
