@@ -1,43 +1,41 @@
 import pandas as pd
 from sqlalchemy import create_engine
-import os
-from dotenv import load_dotenv
-
-# 1. Configurações de Ambiente (Segurança)
-load_dotenv()
-DB_USER = os.getenv('DB_USER')
-DB_PASSWORD = os.getenv('DB_PASSWORD')
-DB_NAME = os.getenv('DB_NAME')
-DB_HOST = os.getenv('DB_HOST')
-DB_PORT = os.getenv('DB_PORT')
 
 def run_pipeline():
     print("🚀 Iniciando Pipeline de Vendas...")
     
-    # --- EXTRAÇÃO ---
-    # Lendo o arquivo CSV que geramos na pasta data/
-    path_input = 'data/vendas_dia_01.csv'
-    df = pd.read_csv(path_input)
-    
-    # --- TRANSFORMAÇÃO ---
+    try:
+        # Lendo o arquivo exato que vi no seu VS Code
+        df = pd.read_csv('data/vendas_dia_01.csv')
+        df.columns = df.columns.str.strip() # Remove espaços bobos nos nomes
+        print(f"✅ Colunas encontradas: {list(df.columns)}")
+    except Exception as e:
+        print(f"❌ Erro ao abrir o arquivo: {e}")
+        return
+
     print("🧹 Transformando dados...")
-    # 1. Remover linhas sem nome de produto
-    df = df.dropna(subset=['produto'])
-    
-    # 2. Padronizar nomes (Primeira letra Maiúscula)
-    df['produto'] = df['produto'].str.capitalize()
-    
-    # 3. Criar coluna de Imposto (10% do valor)
-    df['imposto'] = df['valor'] * 0.10
-    
-    # --- CARGA ---
+    # Ajustando para usar a coluna 'valor' que vi na sua foto
+    if 'valor' in df.columns:
+        df['valor'] = pd.to_numeric(df['valor'], errors='coerce').fillna(0)
+        
+        # Criando as colunas necessárias para o dashboard
+        df['quantidade'] = 1 # Como não tem a coluna quantidade no CSV, cada linha vale 1
+        df['valor_unitario'] = df['valor']
+        df['imposto'] = df['valor'] * 0.10
+        df['receita_total'] = df['valor']
+        df['data_processamento'] = pd.Timestamp.now()
+    else:
+        print("❌ Erro: Coluna 'valor' não encontrada no CSV!")
+        return
+
     print("📥 Carregando no PostgreSQL...")
-    engine = create_engine(f'postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}')
-    
-    # Salva no banco de dados (se a tabela já existir, ele substitui)
-    df.to_sql('vendas_limpas', engine, if_exists='replace', index=False)
-    
-    print("✅ Pipeline finalizado com sucesso!")
+    try:
+        # Conexão direta (vi no seu docker-compose que a porta interna é 5432)
+        engine = create_engine('postgresql://postgres:postgres@localhost:5433/vendas_db')
+        df.to_sql('vendas_limpas', engine, if_exists='replace', index=False)
+        print("✅ Dados carregados com sucesso!")
+    except Exception as e:
+        print(f"❌ Erro na carga: {e}")
 
 if __name__ == "__main__":
     run_pipeline()
