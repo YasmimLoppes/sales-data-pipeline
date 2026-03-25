@@ -3,7 +3,7 @@
 Este projeto simula um cenário real de **Engenharia de Dados**, onde arquivos de vendas diárias são extraídos, tratados e carregados de forma automatizada em um banco de dados estruturado para análise em um dashboard interativo de alta performance.
 
 ## 📊 Visual do Dashboard
-![Dashboard Preview](./dashboard-preview.png)
+![Dashboard Preview](dashboard-preview.jpg)
 > *Interface moderna com visual neon desenvolvida para monitoramento de ingestão de dados.*
 
 ## 🛠️ Stack Tecnológica
