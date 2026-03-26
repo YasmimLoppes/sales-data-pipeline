@@ -1,4 +1,4 @@
-set-content README.md @"
+
 # 🚀 Enterprise Sales Data Pipeline: Do Zero ao Big Data
 
 Bem-vindo ao meu projeto de **Engenharia de Dados**! Este repositório é o resultado de um desafio pessoal: construir um ecossistema completo que integra marketing e finanças, saindo do básico e mergulhando de cabeça em tecnologias que as grandes empresas usam hoje.
