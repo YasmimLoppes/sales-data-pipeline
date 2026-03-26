@@ -1,40 +1,57 @@
-# üöÄ Sales Data Pipeline & Monitoring Engine
+# ?? Enterprise Sales Data Pipeline: Do Zero ao Big Data
 
-Este projeto simula um cen√°rio real de **Engenharia de Dados**, onde arquivos de marketing e vendas s√£o extra√≠dos, tratados via **Apache Spark** e carregados de forma automatizada em um banco de dados estruturado para an√°lise em um dashboard interativo.
-
-## üìä Visual do Dashboard
-![Dashboard Preview](./dashboard-preview.jpg)
+Bem-vindo ao meu projeto de **Engenharia de Dados**! Este repositÛrio È o resultado de um desafio pessoal: construir um ecossistema completo que integra marketing e finanÁas, saindo do b·sico e mergulhando de cabeÁa em tecnologias que as grandes empresas usam hoje.
 
 ---
 
-## üõ†Ô∏è Stack Tecnol√≥gica
+## ?? O PorquÍ deste Projeto
+Muitas vezes, as empresas tÍm dados espalhados em planilhas e plataformas diferentes. O meu objetivo aqui foi criar uma "ponte" autom·tica: pegar esses dados brutos, processar com inteligÍncia e entregar um dashboard pronto para a tomada de decis„o. 
 
-* **Linguagem:** Python 3.11+
-* **Processamento Distribu√≠do:** Apache Spark (PySpark)
-* **Manipula√ß√£o de Dados:** Pandas
-* **Banco de Dados:** PostgreSQL 15 (Dockerizado)
-* **Conectividade:** SQLAlchemy & Psycopg2
-* **Frontend:** React, Tailwind CSS e Recharts (Vite)
-* **Infraestrutura:** Docker & Docker Compose
+N„o È apenas um cÛdigo que roda; È uma soluÁ„o pensada para **escala e performance**.
 
 ---
 
-## üèóÔ∏è Arquitetura do Projeto
+## ??? O que tem "debaixo do capÙ"?
 
-1.  **Extra√ß√£o (Extract):** Leitura de arquivos `.csv` brutos nas pastas `/data/marketing` e `/data/financeiro`.
-2.  **Transforma√ß√£o (Transform):** * **Marketing:** C√°lculo de ROI, CPC (Custo por Clique) e Taxa de Convers√£o.
-    * **Financeiro:** Cruzamento de vendas reais vs. metas mensais com status automatizado.
-3.  **Carga (Load):** Ingest√£o automatizada dos dados limpos no PostgreSQL via Docker.
-4.  **Visualiza√ß√£o:** Dashboard React que consome as m√©tricas de ingest√£o e fluxo.
+* **Apache Spark (PySpark):** O coraÁ„o do projeto. Escolhi o Spark porque, no mundo real, os dados crescem r·pido. Ele me permite processar milhıes de linhas de forma distribuÌda, algo que o Python comum sofreria para fazer.
+* **Docker & PostgreSQL:** Usei Docker para garantir que o banco de dados suba em qualquer m·quina sem erro. O Postgres È a nossa "fonte da verdade".
+* **Python 3.11+:** A linguagem que orquestra tudo, desde a limpeza dos dados atÈ a carga no banco.
+* **React & Tailwind CSS:** Para o monitoramento visual. Porque dados processados precisam ser dados entendidos.
 
 ---
 
-## ‚ö° Executando os Pipelines com Apache Spark
+## ?? Os Desafios (Onde o filho chora e a m„e n„o vÍ!)
 
-O diferencial deste projeto √© a utiliza√ß√£o do **Spark** para processamento de alto desempenho.
+Nem tudo foram flores. Durante o desenvolvimento, enfrentei desafios que me ensinaram muito sobre resiliÍncia tÈcnica:
 
-### 1. An√°lise de ROI (Marketing)
-Calcula a performance das campanhas em diferentes plataformas (Google, Instagram, TikTok).
-```powershell
-python scripts/processar_marketing.py
+1.  **A briga com o Spark no Windows:** Quem j· tentou configurar o Spark sabe o que È o erro do \winutils.exe\ e as vari·veis de ambiente. Foram horas ajustando o Hadoop e o JDK 17 atÈ o Spark finalmente "falar" com o meu Windows. Resolver isso me deu uma base sÛlida de infraestrutura que eu n„o tinha.
+2.  **LÛgica de NegÛcio Real:** N„o bastava somar n˙meros. Tive que implementar lÛgica de **ROI (Retorno sobre Investimento)** e cruzamento de metas de vendas. Ver a tabela do Spark calculando que eu bati **116.67% da meta** foi a melhor recompensa do dia!
+3.  **Arquitetura de Medalh„o:** Organizei os dados em camadas (Bronze, Silver, Gold). Isso garante que o pipeline seja organizado e f·cil de debugar se algo der errado no meio do caminho.
 
+---
+
+## ?? Visual do Dashboard
+![Visual do Dashboard](./dashboard-preview.jpg)
+
+---
+
+## ?? Como testar na sua m·quina
+
+1.  **Prepare o terreno (Docker):**
+    \\\powershell
+    docker-compose up -d
+    \\\
+2.  **Ligue os Motores (Spark):**
+    \\\powershell
+    python scripts/processar_marketing.py
+    python scripts/processar_financeiro.py
+    \\\
+3.  **Veja a M·gica (Frontend):**
+    \\\powershell
+    cd frontend && npm install && npm run dev
+    \\\
+
+---
+
+## ????? Sobre a Desenvolvedora
+Sou a **Yasmim Lopes**, estudante de ADS (3∫ semestre). Sou apaixonada por resolver quebra-cabeÁas com dados. Este projeto È o meu "cart„o de visitas" para mostrar que estou pronta para os desafios reais da Engenharia de Dados. ??
