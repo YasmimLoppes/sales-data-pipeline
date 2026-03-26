@@ -56,4 +56,3 @@ Nem tudo foram flores. Durante o desenvolvimento, enfrentei desafios que me ensi
 
 ## 👩‍💻 Sobre a Desenvolvedora
 Sou a **Yasmim Lopes**, estudante de ADS (3º semestre). Sou apaixonada por resolver quebra-cabeças com dados. Este projeto é o meu "cartão de visitas" para mostrar que estou pronta para os desafios reais da Engenharia de Dados. 🚀
-"@
